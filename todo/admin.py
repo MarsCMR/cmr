@@ -52,13 +52,13 @@ class StepAdminForm(forms.ModelForm):
 				# 新規入力フォームの場合
 				self.fields['process'].widget.attrs = {'rows':3, 'cols':80}
 				self.fields['process'].widget.attrs['class'] = 'vAddContentsArea'
-				self.fields['required_time'].widget.attrs = {'size':'6'}
-				self.fields['actual_time'].widget.attrs = {'size':'6'}
+				self.fields['required_time'].widget.attrs = {'size':6,'min': '0', 'max': '9', 'step': 0.1}
+				self.fields['actual_time'].widget.attrs = {'size':6,'min': '0', 'max': '9', 'step': 0.1}
 			else:
 				lfcnt = self.instance.process.count('\n')
 				self.fields['process'].widget.attrs = {'rows':lfcnt + 2, 'cols':50, 'class':'vExistContentsArea'}
-				self.fields['required_time'].widget.attrs = { 'size':'6', 'class':'vExistContentsArea'}
-				self.fields['actual_time'].widget.attrs = { 'size':'6', 'class':'vExistContentsArea'}
+				self.fields['required_time'].widget.attrs = { 'size':6, 'class':'vExistContentsArea','min': '0', 'max': '9', 'step': 0.1}
+				self.fields['actual_time'].widget.attrs = { 'size':6, 'class':'vExistContentsArea','min': '0', 'max': '9', 'step': 0.1}
 
 '''
 StepInline: タスク詳細記載Class
@@ -150,5 +150,17 @@ class TodoAdmin(admin.ModelAdmin):
 		return super(TodoAdmin,self).changelist_view(request, extra_context=extra_context)
 
 
+class MyAdminSite(AdminSite):
+	''' 下のようにフィールドに値をセットすることで管理サイトの表示文言をオーバーライドできます。 '''
+	# Text to put at the end of each page's <title>.
+	site_title = ("cmr_admin_site_title")
+
+	# Text to put in each page's <h1>.
+	site_header = ("cmr_admin_site_header")
+
+	# Text to put at the top of the admin index page.
+	index_title = ("cmr_admin_index_title")
+
+admin_site = MyAdminSite()
 admin.site.register(Todo, TodoAdmin)
 #admin_site.register(Step, StepAdmin)

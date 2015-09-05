@@ -45,6 +45,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -52,7 +53,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
 LOCALE_PATHS = [os.path.join(SITE_ROOT, 'locale')]
+#LOCALE_PATHS = '/home/m2-chen/cmr/locale'
 
 ROOT_URLCONF = 'cmr.urls'
 
@@ -74,7 +77,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'ja-jp'
+LANGUAGE_CODE = 'jp'
 
 TIME_ZONE = 'Asia/Tokyo'
 

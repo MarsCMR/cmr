@@ -32,7 +32,7 @@ class TodoAdminForm(forms.ModelForm):
 		status = self.cleaned_data['status']
         	if status == '4' and date is None:
 			# 状況を完了にしているのに完了日を設定していない場合にエラーとします
-			raise forms.ValidationError(u'完了にする場合、完了日も入力してください')
+			raise forms.ValidationError(u'完了にする場合、完了日も入力してください。')
 		return date
 
 	# 開始日とSTSの関連チェック
@@ -41,7 +41,7 @@ class TodoAdminForm(forms.ModelForm):
 		status = self.cleaned_data['status']
         	if status == '0' and date is None:
 			# 状況を未着手にしているのに開始日を設定していない場合にエラーとします
-			raise forms.ValidationError(u'未着手の場合、開始日を入力してください')
+			raise forms.ValidationError(u'未着手の場合、開始日を入力してください。')
 		return date
 
 class StepAdminForm(forms.ModelForm):
@@ -53,7 +53,7 @@ class StepAdminForm(forms.ModelForm):
 				self.fields['process'].widget.attrs = {'rows':3, 'cols':80}
 				self.fields['process'].widget.attrs['class'] = 'vAddContentsArea'
 				self.fields['required_time'].widget.attrs = {'size':'6'}
-				self.fields['actual_time'].widget.attrs = {'size':'6'}	
+				self.fields['actual_time'].widget.attrs = {'size':'6'}
 			else:
 				lfcnt = self.instance.process.count('\n')
 				self.fields['process'].widget.attrs = {'rows':lfcnt + 2, 'cols':50, 'class':'vExistContentsArea'}
@@ -87,7 +87,7 @@ class StepInline(admin.StackedInline):
 		(None, {'fields': [('process','required_time','actual_time',)] }),
 	]
 
-	#ordering = ('todo.id',) 
+	#ordering = ('todo.id',)
 
 	def has_add_permission(self, todo):
 		return False
@@ -152,5 +152,3 @@ class TodoAdmin(admin.ModelAdmin):
 
 admin.site.register(Todo, TodoAdmin)
 #admin_site.register(Step, StepAdmin)
-
-

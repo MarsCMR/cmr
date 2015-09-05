@@ -7,3 +7,5 @@ logs/cmr.log
 .project
 .svn/format
 .svn/entries
+*.pyc
+todo/migrations/0002_step.py

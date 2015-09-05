@@ -1,0 +1,9 @@
+*.sqlite3
+logs/cmr.log
+*.db
+.svn/pristine/fd/fd329235636879883bff362d50015c9b7fb66690.svn-base
+*.svn-base
+*.prefs
+.project
+.svn/format
+.svn/entries
